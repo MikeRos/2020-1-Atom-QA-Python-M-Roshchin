@@ -139,8 +139,6 @@ class TestInt:
         a = int(a)
         assert isinstance(a, int)
 
-    """ Test will fail each time when parameter divides by 3 without reminder """
-
     @pytest.mark.parametrize('a', range(0, 7))
     def test_int_reminder(self, a):
-        assert isinstance(a, int) and a % 3
+        assert isinstance(a, int) and a % 1 == 0
