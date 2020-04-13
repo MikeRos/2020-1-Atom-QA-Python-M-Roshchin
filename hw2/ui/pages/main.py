@@ -8,7 +8,7 @@ class MainPage(BasePage):
 
     locators = MainLocators()
 
-    def create_company(self, link, name, picture):
+    def create_campaign(self, link, name, picture):
         self.click(self.locators.CAMPAIGN_LIST)
         self.click(self.locators.LINK_CREATE_CAMPAIGN)
         self.click(self.locators.TRAFFIC_TYPE)

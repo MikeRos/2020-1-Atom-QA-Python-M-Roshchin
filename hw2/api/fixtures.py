@@ -5,7 +5,7 @@ import pytest
 @pytest.fixture(scope='function')
 def test_segment_data():
     data = {
-        'name': f'test_name{randint(100, 100000)}',
+        'name': f'test_name {randint(100, 100000)}',
         'pass_condition': 1,
         'relations': [
             {

@@ -17,7 +17,7 @@ class TestUi(BaseCase):
 
     def test_create_campaign(self, get_main_page, test_name, upload_file):
         self.page = get_main_page
-        self.page.create_company('target.my.com', test_name, upload_file)
+        self.page.create_campaign('target.my.com', test_name, upload_file)
         element = self.page.find(self.page.locators.CAMPAIGN_NAME)
         assert element.get_attribute("text") == test_name
 

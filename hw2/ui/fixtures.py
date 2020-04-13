@@ -38,7 +38,7 @@ def driver(config):
     driver.maximize_window()
     driver.get(url)
     yield driver
-    driver.close()
+    driver.quit()
 
 
 @pytest.fixture(scope="function")
@@ -55,7 +55,7 @@ def get_main_page(driver):
 
 @pytest.fixture(scope='function')
 def test_name():
-    return "test_name" + str(random.randint(1, 1000))
+    return "test_name " + str(random.randint(1, 1000))
 
 
 @pytest.fixture(scope="function")
