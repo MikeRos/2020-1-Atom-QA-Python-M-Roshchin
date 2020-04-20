@@ -10,7 +10,9 @@ class AuthLocators:
 class MainLocators:
 
     USER_NAME = (By.CLASS_NAME, 'right-module-userNameWrap-34ibLS')
-    CAMPAIGN_NAME = (By.XPATH, '//div[@class="campaign-title-top"]/a')
+    CAMPAIGN_NAME = (By.XPATH, '//a[@class="campaigns-tbl-cell__campaign-name"]')
+    SEARCH_CAMPAIGN = (By.XPATH, '//div[@class="campaigns-tbl-settings__suggester js-suggester-wrap"]//input')
+    CAMPAIGN_SUGGESTION = (By.XPATH, '//span[@class="suggester-ts__item__name"]')
     CAMPAIGN_LIST = (By.XPATH, '//a[@href="/campaigns/full"]')
     LINK_CREATE_CAMPAIGN = (By.CLASS_NAME, 'campaigns-page__create-button')
     TRAFFIC_TYPE = (By.XPATH, '//div[@class="column-list-item__title js-title"]')

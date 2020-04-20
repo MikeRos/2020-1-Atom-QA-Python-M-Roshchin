@@ -8,6 +8,15 @@ class MainPage(BasePage):
 
     locators = MainLocators()
 
+    def search_campaign(self, name):
+        self.driver.get("https://target.my.com/campaigns/list")
+        search = self.find(self.locators.SEARCH_CAMPAIGN)
+        # Have to wait while searching to get a result
+        self.wait().until(EC.visibility_of_element_located(self.locators.CAMPAIGN_NAME))
+        search.send_keys(name)
+        self.wait().until(EC.visibility_of_element_located(self.locators.CAMPAIGN_SUGGESTION))
+        self.click(self.locators.CAMPAIGN_SUGGESTION)
+
     def create_campaign(self, link, name, picture):
         self.click(self.locators.CAMPAIGN_LIST)
         self.click(self.locators.LINK_CREATE_CAMPAIGN)
@@ -19,6 +28,14 @@ class MainPage(BasePage):
         download_elem.send_keys(picture)
         self.click(self.locators.SAVE_PIC)
         self.click(self.locators.BUTTON_CREATE_CAMPAIGN)
+
+    def search_segment(self, name):
+        self.driver.get("https://target.my.com/segments/segments_list")
+        search = self.find(self.locators.SEARCH_SEGMENT)
+        search.send_keys(name)
+        # Have to wait while searching to get a result
+        self.wait().until(EC.visibility_of_element_located(self.locators.SEARCH_SUGGESTION))
+        search.send_keys(Keys.RETURN)
 
     def create_segment(self, name):
         self.click(self.locators.BUTTON_SEGMENTS)
@@ -36,10 +53,6 @@ class MainPage(BasePage):
         self.click(self.locators.BUTTON_CONFIRM_SEGMENT)
 
     def delete_segment(self, name):
-        search = self.find(self.locators.SEARCH_SEGMENT)
-        search.send_keys(name)
-        # Have to wait while searching to get a result
-        self.wait().until(EC.visibility_of_element_located(self.locators.SEARCH_SUGGESTION))
-        search.send_keys(Keys.RETURN)
+        self.search_segment(name)
         self.click(self.locators.DELETE_BUTTON)
         self.click(self.locators.CONFIRM_DELETE)

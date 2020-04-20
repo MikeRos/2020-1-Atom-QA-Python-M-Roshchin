@@ -18,15 +18,14 @@ class TestUi(BaseCase):
     def test_create_campaign(self, get_main_page, test_name, upload_file):
         self.page = get_main_page
         self.page.create_campaign('target.my.com', test_name, upload_file)
+        self.page.search_campaign(test_name)
         element = self.page.find(self.page.locators.CAMPAIGN_NAME)
         assert element.get_attribute("text") == test_name
 
     def test_create_segment(self, get_main_page, test_name):
         self.page = get_main_page
         self.page.create_segment(test_name)
-        # Have to sort to get last segment if there are any other
-        self.page.click(self.page.locators.BUTTON_SORT)
-        self.page.click(self.page.locators.BUTTON_SORT)
+        self.page.search_segment(test_name)
         element = self.page.find(self.page.locators.SEGMENT_NAME)
         assert element.get_attribute("text") == test_name
 
@@ -34,8 +33,6 @@ class TestUi(BaseCase):
         result = False
         self.page = get_main_page
         self.page.create_segment(test_name)
-        while self.driver.current_url != "https://target.my.com/segments/segments_list":
-            pass
         self.page.delete_segment(test_name)
         self.driver.refresh()
         print(self.page.find(self.page.locators.SEGMENT_COUNTER).text)
