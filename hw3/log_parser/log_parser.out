@@ -1,0 +1,37 @@
+51462
+***
+GET 51379
+HEAD 83
+***
+URL: /downloads/product_1	 Code: 200	 Count: 1
+URL: /downloads/product_1	 Code: 200	 Count: 1
+URL: /downloads/product_1	 Code: 200	 Count: 7
+URL: /downloads/product_1	 Code: 200	 Count: 6
+URL: /downloads/product_1	 Code: 200	 Count: 56
+URL: /downloads/product_1	 Code: 200	 Count: 5
+URL: /downloads/product_1	 Code: 200	 Count: 4
+URL: /downloads/product_1	 Code: 200	 Count: 4
+URL: /downloads/product_1	 Code: 200	 Count: 4
+URL: /downloads/product_1	 Code: 200	 Count: 3
+***
+URL: /downloads/product_1	 Code: 404	 IP: 216.46.173.126
+URL: /downloads/product_2	 Code: 404	 IP: 180.179.174.219
+URL: /downloads/product_2	 Code: 404	 IP: 180.179.174.219
+URL: /downloads/product_1	 Code: 404	 IP: 65.39.197.164
+URL: /downloads/product_2	 Code: 404	 IP: 204.77.168.241
+URL: /downloads/product_1	 Code: 404	 IP: 84.208.15.12
+URL: /downloads/product_1	 Code: 404	 IP: 74.125.60.158
+URL: /downloads/product_1	 Code: 404	 IP: 65.39.197.164
+URL: /downloads/product_1	 Code: 404	 IP: 80.91.33.133
+URL: /downloads/product_2	 Code: 404	 IP: 180.179.174.219
+***
+URL: /downloads/product_1	 Code: 404	 IP: 81.198.186.18
+URL: /downloads/product_1	 Code: 404	 IP: 81.198.186.18
+URL: /downloads/product_1	 Code: 404	 IP: 81.198.186.18
+URL: /downloads/product_1	 Code: 404	 IP: 81.198.186.18
+URL: /downloads/product_1	 Code: 404	 IP: 81.198.186.18
+URL: /downloads/product_1	 Code: 404	 IP: 81.198.186.18
+URL: /downloads/product_1	 Code: 404	 IP: 81.198.186.18
+URL: /downloads/product_1	 Code: 404	 IP: 81.198.186.18
+URL: /downloads/product_2	 Code: 404	 IP: 14.202.165.96
+URL: /downloads/product_1	 Code: 404	 IP: 81.198.186.18
