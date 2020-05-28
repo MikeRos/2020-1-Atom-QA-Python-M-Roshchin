@@ -1,0 +1,6 @@
+.pytest_cache
+__pycache__
+*.pyc
+.idea
+Pipfile*
+test_db_client.py
