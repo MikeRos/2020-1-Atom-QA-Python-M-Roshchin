@@ -1,0 +1,52 @@
+version: '2.4'
+services:
+  jenkins:
+    build:
+      context: jenkins
+      dockerfile: dockerfile
+    container_name: jenkins
+    volumes:
+      - ./src:/repo/src
+      - ./src/db_init:/docker-entrypoint-initdb.d
+      - ./src/etc:/myconf
+      - ./tests:/repo/tests
+      - ./jenkins/jenkins_home:/var/jenkins_home
+      - /var/run/docker.sock:/var/run/docker.sock
+    links:
+      - "selenoid:selenoid-host"
+      - "selenoid-ui:selenoid-ui-host"
+    external_links:
+      - QA-Atom-Mysql:db-server
+      - vk-api-mock:vk-api-server
+      - test-app:test-app-server
+    ports:
+      - "8000:8080"
+      - "50001:50000"
+
+  selenoid:
+    image: "aerokube/selenoid"
+    container_name: selenoid
+    volumes:
+    - ./selenoid/:/etc/selenoid/
+    - /var/run/docker.sock:/var/run/docker.sock
+    ports:
+      - "4444:4444"
+    links:
+      - "selenoid-ui:selenoid-ui"
+    external_links:
+      - test-app:test-app-server
+    command: ["-container-network", "project-net"]
+
+  selenoid-ui:
+    image: "aerokube/selenoid-ui"
+    container_name: selenoid-ui
+#    links:
+#      - "selenoid:selenoid"
+    ports:
+      - "8888:8080"
+    command: ["--selenoid-uri", "http://selenoid:4444"]
+
+networks:
+    default:
+      name: project-net
+      external: true

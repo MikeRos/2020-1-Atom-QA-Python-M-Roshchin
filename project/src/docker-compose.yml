@@ -1,0 +1,56 @@
+version: '2.4'
+services:
+  db:
+    container_name: QA-Atom-Mysql
+    image: mysql:5.7
+    volumes_from:
+      - container:jenkins
+    environment:
+      MYSQL_ROOT_USER: 'root'
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: 'technoatom'
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+    ports:
+      - "3306:3306"
+    healthcheck:
+      interval: 20s
+      timeout: 3s
+      retries: 10
+      test: bash /repo/src/db_healthcheck.sh
+
+
+  vk-api-mock:
+    build:
+      context: ./vk_api_mock
+      dockerfile: dockerfile
+    container_name: vk-api-mock
+    ports:
+      - "5000:5000"
+    healthcheck:
+      interval: 10s
+      timeout: 3s
+      retries: 3
+      test: ["CMD", "curl", "-f", "http://localhost:5000/name_with_valid_id"]
+
+  test-app:
+    container_name: test-app
+    image: myapp
+    volumes_from:
+      - container:jenkins
+    ports:
+      - "8080:8080"
+    links:
+      - "db:db-server"
+      - "vk-api-mock:vk-api-server"
+    depends_on:
+      vk-api-mock:
+        condition: service_healthy
+      db:
+        condition: service_healthy
+    command: /app/myapp --config=/myconf/default_config
+
+networks:
+    default:
+      name: project-net
+      external: true
